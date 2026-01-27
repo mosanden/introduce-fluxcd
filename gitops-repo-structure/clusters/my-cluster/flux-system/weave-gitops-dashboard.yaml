@@ -1,0 +1,41 @@
+# GitOps Dashboard kann auch über CLI gesteuert werden
+# https://github.com/weaveworks/weave-gitops?tab=readme-ov-file#cli-reference
+
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  annotations:
+    metadata.weave.works/description:
+      This is the Weave GitOps Dashboard.  It provides
+      a simple way to get insights into your GitOps workloads.
+  labels:
+    app.kubernetes.io/component: ui
+    app.kubernetes.io/created-by: weave-gitops-cli
+    app.kubernetes.io/name: weave-gitops-dashboard
+    app.kubernetes.io/part-of: weave-gitops
+  name: ww-gitops
+  namespace: flux-system
+spec:
+  interval: 48h
+  type: oci
+  url: oci://ghcr.io/weaveworks/charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ww-gitops
+  namespace: flux-system
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: weave-gitops
+      sourceRef:
+        kind: HelmRepository
+        name: ww-gitops
+      version: 4.0.36
+  values:
+    adminUser:
+      create: true
+      passwordHash: $2a$12$zuphwXvtcwwx1r8EFoSoveqMkIC2H7X4n7M8vhfjUZr4yR4o7xRPa
+      username: admin
