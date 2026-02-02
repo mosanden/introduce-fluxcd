@@ -1,8 +1,8 @@
 # FluxCD Live Demo
 
-## From ArgoCD to Flux
+## From Argo CD to Flux
 
-**The Philosophy:** While ArgoCD is a developer-centric hub with a rich UI, **FluxCD** is a set of specialized, modular controllers.
+**The Philosophy:** While Argo CD is a developer-centric hub with a rich UI, **FluxCD** is a set of specialized, modular controllers.
 
 **Key Differences:**
 * **Architecture:** Flux is "GitOps by Design" (no central API server/SSO needed unless using a UI add-on).
@@ -194,7 +194,7 @@ flux install --export > ./clusters/my-cluster/flux-system/gotk-components.yaml
 Alternatively, updates can be installed using Helm or by **rerunning the bootstrap command**. Make sure you have the corresponding version of the Flux CLI installed.
 
 ## Phase 4: Installing a UI
-There is no official UI for Flux as there is for ArgoCD. But there are a couple of third-party options listed [here](https://fluxcd.io/flux/#flux-uis).
+There is no official UI for Flux as there is for Argo CD. But there are a couple of third-party options listed [here](https://fluxcd.io/flux/#flux-uis).
 
 ### Capacitor
 Add and commit `capacitor.yaml`. Then start a port forward.
