@@ -7,7 +7,7 @@
 **Key Differences:**
 * **Architecture:** Flux is "GitOps by Design" (no central API server/SSO needed unless using a UI add-on).
 * **CRD Centric:** Every action in Flux is a Kubernetes Custom Resource.
-* **The Pull Model:** Discussion on how Flux lives inside the cluster and pulls manifests without external access requirements.
+* **The Pull Model:** Flux lives inside the cluster and pulls manifests without external access requirements.
 
 ![Architecture - https://fluxcd.io/flux/components/](https://fluxcd.io/img/diagrams/gitops-toolkit.png)
 
@@ -16,14 +16,12 @@ Create an empty git repository:
 ```bash
 cd ~/projects/flux-demo
 git remote show origin
-rm -rf *
-git add .
-...
+git reset --hard 384b3c1f9861ab67e3f1a6c93a2913e154d15461
+git push --force
 ```
 
 ## Phase 1: The Bootstrap
 Flux initializes itself and manages its own lifecycle. Installation via Helm is also possible.
-
 ```bash
 # Start a cluster
 kind create cluster --name flux-demo
